@@ -31,19 +31,31 @@ namespace practice
             memory.Add(date_time);
             Console.Write("username: ");
             string user_name = Console.ReadLine();
+            string checkUser()
+            {
+                if (user_name.Length > 1)
+                {
+                    return user_name;
+                }
+                else
+                {
+                    return "Anonymous";
+                }
+            }
             Dictionary<string, string> user_data = new Dictionary<string, string>
         {
             { "name", "user" },
-            { "content", user_name }
+            { "content", checkUser() }
         };
-            
+
             memory.Add(user_data);
-            Console.WriteLine("--------------------------------------");
+            
+            Console.WriteLine("-------------------------------------------");
             Console.WriteLine($"Welcome, {user_data["content"]}!");
-            Console.WriteLine("--------------------------------------");
+            Console.WriteLine("-------------------------------------------");
             while (isExist)
             {
-                Console.Write($"Terminal::{current_path}-> ");
+                Console.Write($"[{user_data["content"]}]Terminal::{current_path}-> ");
                 string input = Console.ReadLine();
                 string[] commandArgs = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 if (input == "exit")
